@@ -190,7 +190,12 @@ sudo python3 dos_blocker.py
                       |                                       |
              Drops at Boundary                       Drops via Linux Kernel
         (Protects LAN & Bandwidth)                  (Zero-Config Endpoint Host)
-1. Perimeter Mitigation (pfSense Firewall)Navigate to Firewall > Rules > WAN and click Add (Top).   Action: Block   Source: 192.168.0.200 (Kali IP)   Destination: 192.168.1.100 (Ubuntu IP)   Logging: Check "Log packets handled by this rule"   Description: Block Kali DoS Attack   Click Save and Apply Changes.   2. Multi-Tier VerificationWireshark Live Metrics: The packet stream immediately plunges to 0 packets/sec upon activation of the pfSense rule or the host blocker.   pfSense System Logs: Navigate to Status > System Logs > Firewall to observe dropped packets flagged with red block icons.   Kernel Rule Verification: Run sudo iptables -L INPUT -v -n to review active byte and packet drop statistics incremented by the Python daemon.📜 Repository Structure├── README.md               # Complete lab architecture and walkthrough
+1. Perimeter Mitigation (pfSense Firewall)Navigate to Firewall > Rules > WAN and click Add (Top).
+2. Action: Block   Source: 192.168.0.200 (Kali IP)   Destination: 192.168.1.100 (Ubuntu IP)   Logging: Check "Log packets handled by this rule"   Description: Block Kali DoS Attack   Click Save and Apply Changes.
+3.  Multi-Tier VerificationWireshark Live Metrics: The packet stream immediately plunges to 0 packets/sec upon activation of the pfSense rule or the host blocker.
+4.  pfSense System Logs: Navigate to Status > System Logs > Firewall to observe dropped packets flagged with red block icons.
+5.   Kernel Rule Verification: Run sudo iptables -L INPUT -v -n to review active byte and packet drop statistics incremented by the Python daemon.
+6. 📜 Repository Structure├── README.md               # Complete lab architecture and walkthrough
 ├── scripts/
 │   └── dos_blocker.py      # Automated socket sniffer & dynamic iptables blocker
 └── docs/
